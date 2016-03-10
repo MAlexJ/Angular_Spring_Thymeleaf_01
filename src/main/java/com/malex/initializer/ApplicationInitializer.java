@@ -1,8 +1,8 @@
 package com.malex.initializer;
 
-import com.malex.config.WebConfig;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
@@ -12,16 +12,24 @@ import javax.servlet.ServletRegistration;
 
 public class ApplicationInitializer implements WebApplicationInitializer {
 
-    public final String DISPATCHER = "dispatcher";
+    private final String DISPATCHER = "dispatcher";
+    private final String MAPPING_URL = "/*";
+    private final String CONFIG_LOCATION = "com.malex.config";
+
+    private AnnotationConfigWebApplicationContext getContext() {
+        AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
+        ctx.setConfigLocation(CONFIG_LOCATION);
+        return ctx;
+    }
 
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
-        AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
-        ctx.register(WebConfig.class);
-        servletContext.addListener(new ContextLoaderListener(ctx));
 
-        ServletRegistration.Dynamic servletRegistration = servletContext.addServlet(DISPATCHER, new DispatcherServlet(ctx));
-        servletRegistration.addMapping("/");
+        WebApplicationContext context = getContext();
+        servletContext.addListener(new ContextLoaderListener(context));
+
+        ServletRegistration.Dynamic servletRegistration = servletContext.addServlet(DISPATCHER, new DispatcherServlet(context));
+        servletRegistration.addMapping(MAPPING_URL);
         servletRegistration.setLoadOnStartup(1);
     }
 }

@@ -16,8 +16,9 @@ public class AppConfig {
 
         ClassPathResource dataSource = new ClassPathResource("db.properties");
         ClassPathResource hibernate = new ClassPathResource("hibernate.properties");
+        ClassPathResource dbcp = new ClassPathResource("dbcp.properties");
 
-        configurer.setLocations(dataSource, hibernate);
+        configurer.setLocations(dataSource, hibernate, dbcp);
         return configurer;
     }
 }

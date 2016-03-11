@@ -22,31 +22,31 @@ public class DatabaseConfig {
 
     // DataSource
     @Value("${db.driver}")
-    private String DRIVER;
+    private String driver;
     @Value("${db.url}")
-    private String URL;
+    private String url;
     @Value("${db.username}")
-    private String USER_NAME;
+    private String userName;
     @Value("${db.password}")
-    private String PASSWORD;
+    private String password;
     @Value("${db.entity.package}")
-    private String PACKAGE;
+    private String packageEntity;
 
     // DBCP
     @Value("${db.initialSize}")
-    private Integer INITIAL_SIZE;
+    private Integer initialSize;
     @Value("${db.minIdle}")
-    private Integer MIN_IDLE;
+    private Integer minIdle;
     @Value("${db.maxIdle}")
-    private Integer MAX_IDLE;
+    private Integer maxIdle;
     @Value("${db.timeBetweenEvictionRunsMillis}")
-    private Integer TIME_RUNS;
+    private Integer timeRuns;
     @Value("${db.minEvictableIdleTimeMillis}")
-    private Integer MIN_IDLE_TIME;
+    private Integer minIdleTime;
     @Value("${db.testOnBorrow}")
-    private boolean TEST_ON_BORROW;
+    private boolean testOnBorrow;
     @Value("${db.validationQuery}")
-    private String VALIDATION_QUERY;
+    private String validationQuery;
 
     // Hibernate
     @Value("${data.showsql}")
@@ -54,7 +54,7 @@ public class DatabaseConfig {
     @Value("${data.generateddl}")
     private boolean generateDdl;
     @Value("${data.dialect}")
-    private String DIALECT;
+    private String dialect;
     @Value("${data.hbm2ddl.auto}")
     private String hbm2ddlAuto;
     @Value("${data.database}")
@@ -64,18 +64,18 @@ public class DatabaseConfig {
     public DataSource dataSource() {
         // Base DataSource
         BasicDataSource ds = new BasicDataSource();
-        ds.setDriverClassName(DRIVER);
-        ds.setUrl(URL);
-        ds.setUsername(USER_NAME);
-        ds.setPassword(PASSWORD);
+        ds.setDriverClassName(driver);
+        ds.setUrl(url);
+        ds.setUsername(userName);
+        ds.setPassword(password);
         // DBCP
-        ds.setInitialSize(INITIAL_SIZE);
-        ds.setMinIdle(MIN_IDLE);
-        ds.setMaxIdle(MAX_IDLE);
-        ds.setTimeBetweenEvictionRunsMillis(TIME_RUNS);
-        ds.setMinEvictableIdleTimeMillis(MIN_IDLE_TIME);
-        ds.setTestOnBorrow(TEST_ON_BORROW);
-        ds.setValidationQuery(VALIDATION_QUERY);
+        ds.setInitialSize(initialSize);
+        ds.setMinIdle(minIdle);
+        ds.setMaxIdle(maxIdle);
+        ds.setTimeBetweenEvictionRunsMillis(timeRuns);
+        ds.setMinEvictableIdleTimeMillis(minIdleTime);
+        ds.setTestOnBorrow(testOnBorrow);
+        ds.setValidationQuery(validationQuery);
         return ds;
     }
 
@@ -96,11 +96,11 @@ public class DatabaseConfig {
         // Provider JPA
         entityManagerFactory.setJpaVendorAdapter(jpaVendorAdapter());
         // Entity package
-        entityManagerFactory.setPackagesToScan(PACKAGE);
+        entityManagerFactory.setPackagesToScan(packageEntity);
         // Config Hibernate
         Properties jpaProperties = new Properties();
         jpaProperties.setProperty("hibernate.hbm2ddl.auto", hbm2ddlAuto);
-        jpaProperties.setProperty("hibernate.dialect", DIALECT);
+        jpaProperties.setProperty("hibernate.dialect", dialect);
         entityManagerFactory.setJpaProperties(jpaProperties);
         return entityManagerFactory;
     }

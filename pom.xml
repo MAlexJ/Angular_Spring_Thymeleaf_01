@@ -21,6 +21,7 @@
         <logback.version>1.1.2</logback.version>
         <slf4j-api.version>1.7.12</slf4j-api.version>
         <hibernate-entitymanager.version>5.0.2.Final</hibernate-entitymanager.version>
+        <thymeleaf-spring4.version>2.1.4.RELEASE</thymeleaf-spring4.version>
     </properties>
 
     <dependencies>
@@ -36,6 +37,13 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+
+        <!-- Spring Web MVC -->
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf-spring4</artifactId>
+            <version>${thymeleaf-spring4.version}</version>
         </dependency>
 
         <!-- Servlet API -->

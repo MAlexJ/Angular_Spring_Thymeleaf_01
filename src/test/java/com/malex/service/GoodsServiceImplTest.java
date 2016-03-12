@@ -100,7 +100,6 @@ public class GoodsServiceImplTest extends AbstractTransactionalJUnit4SpringConte
         assertEquals(expectList, actualList);
     }
 
-
     private List<GoodsEntity> listGoodsEntities() {
         List<GoodsEntity> list = new ArrayList<>();
         for (int i = 1; i < 7; i++) {

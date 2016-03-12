@@ -32,7 +32,7 @@ public class DatabaseConfig {
     @Value("${db.entity.package}")
     private String packageEntity;
 
-    // DBCP
+    // DBCP2
     @Value("${db.initialSize}")
     private Integer initialSize;
     @Value("${db.minIdle}")
@@ -88,6 +88,14 @@ public class DatabaseConfig {
         return jpaVendorAdapter;
     }
 
+    private Properties jpaProperties() {
+        // Config Hibernate
+        Properties jpaProperties = new Properties();
+        jpaProperties.setProperty("hibernate.hbm2ddl.auto", hbm2ddlAuto);
+        jpaProperties.setProperty("hibernate.dialect", dialect);
+        return jpaProperties;
+    }
+
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
@@ -98,15 +106,13 @@ public class DatabaseConfig {
         // Entity package
         entityManagerFactory.setPackagesToScan(packageEntity);
         // Config Hibernate
-        Properties jpaProperties = new Properties();
-        jpaProperties.setProperty("hibernate.hbm2ddl.auto", hbm2ddlAuto);
-        jpaProperties.setProperty("hibernate.dialect", dialect);
-        entityManagerFactory.setJpaProperties(jpaProperties);
+        entityManagerFactory.setJpaProperties(jpaProperties());
         return entityManagerFactory;
     }
 
     @Bean
     public JpaTransactionManager transactionManager() {
+        // Config TM
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         // Register LocalContainerEntityManagerFactoryBean
         transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());

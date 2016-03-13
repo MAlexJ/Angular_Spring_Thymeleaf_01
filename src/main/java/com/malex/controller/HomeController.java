@@ -15,9 +15,9 @@ public class HomeController {
         return "Controller";
     }
 
-
-    @RequestMapping( method = RequestMethod.GET)
-    public String home(){
-        return  "index";
+    @RequestMapping(method = RequestMethod.GET)
+    public String home() {
+        return "index";
     }
+
 }

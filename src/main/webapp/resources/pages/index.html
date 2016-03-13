@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<!-- AngularJS -->
+<script type="text/javascript" th:src="@{/resources/js/lib/angular.min.js}" src="../js/lib/angular.min.js"></script>
+<!-- Module -->
+<script type="text/javascript" th:src="@{/resources/js/module/module.js}" src="../js/module/module.js"></script>
+<!-- Controller -->
+<script type="text/javascript" th:src="@{/resources/js/controller/controller.js}" src="../js/controller/controller.js"></script>
+
 <head>
     <meta charset="utf-8"/>
     <title>Store app</title>
 </head>
-<body>
+<body ng-app="myApp">
 <p>Test page for the application</p>
+
+<div ng-controller="myController">
+
+    <h4>Angular Controller</h4>
+
+    <div>
+        <P><b>id:</b> {{goods.id}}</P>
+        <P><b>title:</b>{{goods.title}}</P>
+        <P><b>description:</b>{{goods.description}}</P>
+        <P><b>price:</b> {{goods.price | currency  }}</P>
+    </div>
+
+</div>
 </body>
 </html>

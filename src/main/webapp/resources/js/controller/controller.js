@@ -10,5 +10,10 @@ myApp.controller('myController', ['$scope', '$http',
             console.log("код ответа: " +status);
         });
 
+        $http.get('/listGoods').success(function(data) {
+            $scope.listGoods = data;
+        }).error(function(data, status) {
+            console.log("код ответа: " +status);
+        });
     }
 ]);

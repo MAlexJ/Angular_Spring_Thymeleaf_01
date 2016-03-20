@@ -1,11 +1,10 @@
 package com.malex.controller;
 
 import com.malex.model.GoodsEntity;
+import com.malex.service.GoodsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,37 +12,42 @@ import java.util.List;
 @RestController
 public class MyRestController {
 
-    @RequestMapping(path = "/goods", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @Autowired
+    private GoodsService goodsService;
+
+    // GET /phone/{id} (View) – получает полную информацию о объекте.
+    @RequestMapping(path = "/phone/{id}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public GoodsEntity goodsEntity() {
-        GoodsEntity entity = new GoodsEntity();
-        entity.setId(1L);
-        entity.setTitle("Phone");
-        entity.setDescription("Nokia 3110");
-        entity.setPrice(99.12);
-        return entity;
+    public GoodsEntity goodsEntity(@PathVariable Long id) {
+        return goodsService.findById(id);
     }
 
 
-    @RequestMapping(path = "/listGoods", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    // GET /phone/ (Index) – получает список всех объектов.
+    @RequestMapping(path = "/phone",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public List<GoodsEntity> listGoodsEntity() {
-        List<GoodsEntity> list = new ArrayList<>();
+        return goodsService.findAll();
+    }
 
-        GoodsEntity entityOne = new GoodsEntity();
-        entityOne.setId(2L);
-        entityOne.setTitle("NoteBook");
-        entityOne.setDescription("ASUS T100 TA");
-        entityOne.setPrice(400.22);
+    // PUT /phone/ (Create) – создает новый объект.
+    @RequestMapping(path = "/phone",
+            method = RequestMethod.PUT)
+    public void createGoodsEntity(@RequestBody GoodsEntity entity) {
+        goodsService.save(entity);
+    }
 
-        GoodsEntity entityTwo = new GoodsEntity();
-        entityTwo.setId(3L);
-        entityTwo.setTitle("Camera");
-        entityTwo.setDescription("Sony");
-        entityTwo.setPrice(135.23);
+    // POST /phone/{id} (Edit) – изменяет данные с идентификатором {id}.
 
-        list.add(entityOne);
-        list.add(entityTwo);
-        return list;
+
+    // DELETE /phone/{id} (Delete) – удаляет данные с идентификатором {id}.
+    @RequestMapping(path = "/phone/{id}",
+            method = RequestMethod.DELETE)
+    public void deleteGoodsEntity(@PathVariable Long id) {
+        goodsService.delete(id);
     }
 }

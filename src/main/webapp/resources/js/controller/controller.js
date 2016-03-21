@@ -23,9 +23,9 @@ myApp.controller('myController', ['$scope', '$http',
             if (answerForm.$valid) {
                 $http.put('/phone', answer).success(function () {
                     {
-                        $scope.answer.title= "";
-                        $scope.answer.description= "";
-                        $scope.answer.price= "";
+                        $scope.answer.title = "";
+                        $scope.answer.description = "";
+                        $scope.answer.price = "";
                         console.log("put: success");
 
                         // repeat: get list
@@ -39,8 +39,25 @@ myApp.controller('myController', ['$scope', '$http',
             }
         }
 
-        
-        
-        
+        //DELETE
+        $scope.delete = function (selectOpt) {
+            if (selectOpt > 0) {
+
+                $http.delete('/phone/'+selectOpt).success(function () {                    
+                   
+                    // repeat: get list
+                    $http.get('/phone').success(function (data) {
+                        $scope.phones = data;
+                    }).error(function (data, status) {
+                        console.log("код ответа: " + status);
+                    });                   
+                });   
+            }
+            else {
+                console.log('Error');
+            }
+        };
+
+
     }
 ]);

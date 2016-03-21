@@ -115,13 +115,16 @@
     <hr class="uk-grid-divider"/>
 
     <h4>Example 5</h4>
-    <form class="uk-form" name="deleteForm">
+    <form class="uk-form">
         <legend>DELETE /phone/{id} (Delete) – удаляет данные с идентификатором {id}.</legend>
         <div class="uk-form-row">
-            <select>Phone</select>
+            <select ng-model="selectOpt"
+                    ng-options="selectOpt.id for selectOpt in phones">
+                <option value="" disabled="">Select</option>
+            </select>
         </div>
         <div class="uk-form-row">
-            <button class="uk-button">Delete</button>
+            <button class="uk-button" ng-click="delete(selectOpt.id)">Delete</button>
         </div>
     </form>
     <hr class="uk-grid-divider"/>

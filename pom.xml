@@ -120,6 +120,20 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- JWebUnit -->
+        <dependency>
+            <groupId>net.sourceforge.jwebunit</groupId>
+            <artifactId>jwebunit-htmlunit-plugin</artifactId>
+            <version>3.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>xml-apis</groupId>
+            <artifactId>xml-apis</artifactId>
+            <version>1.4.01</version>
+            <scope>test</scope>
+        </dependency>
+
         <!-- db_unit -->
         <dependency>
             <groupId>org.dbunit</groupId>
@@ -133,6 +147,7 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <!-- Spring-test-dbunit  -->
@@ -140,6 +155,7 @@
             <groupId>com.github.springtestdbunit</groupId>
             <artifactId>spring-test-dbunit</artifactId>
             <version>1.2.1</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

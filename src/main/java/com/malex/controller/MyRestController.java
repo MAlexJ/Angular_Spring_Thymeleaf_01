@@ -21,9 +21,8 @@ public class MyRestController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public GoodsEntity goodsEntity(@PathVariable Long id) {
-        return goodsService.findById(id);
+        return this.goodsService.findById(id);
     }
-
 
     // GET /phone/ (Index) – получает список всех объектов.
     @RequestMapping(path = "/phone",
@@ -31,23 +30,27 @@ public class MyRestController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public List<GoodsEntity> listGoodsEntity() {
-        return goodsService.findAll();
+        return this.goodsService.findAll();
     }
 
     // PUT /phone/ (Create) – создает новый объект.
     @RequestMapping(path = "/phone",
             method = RequestMethod.PUT)
     public void createGoodsEntity(@RequestBody GoodsEntity entity) {
-        goodsService.save(entity);
+        this.goodsService.save(entity);
     }
 
     // POST /phone/{id} (Edit) – изменяет данные с идентификатором {id}.
-
+    @RequestMapping(path = "/phone",
+            method = RequestMethod.POST)
+    public void updateGoodsEntity(@RequestBody GoodsEntity entity) {
+        this.goodsService.update(entity);
+    }
 
     // DELETE /phone/{id} (Delete) – удаляет данные с идентификатором {id}.
     @RequestMapping(path = "/phone/{id}",
             method = RequestMethod.DELETE)
     public void deleteGoodsEntity(@PathVariable Long id) {
-        goodsService.delete(id);
+        this.goodsService.delete(id);
     }
 }

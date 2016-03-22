@@ -1,6 +1,11 @@
 'use strict';
 
-myApp.controller('myController', ['$scope', '$http',
+
+myApp.controller('homeController', function () {
+    
+});
+
+myApp.controller('crudController', ['$scope', '$http',
     function ($scope, $http) {
 
         // GET: {id}
@@ -84,3 +89,8 @@ myApp.controller('myController', ['$scope', '$http',
         };
     }
 ]);
+
+myApp.controller('loginController', function () {
+
+
+});

@@ -9,15 +9,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/")
 public class HomeController {
 
-    @RequestMapping(path = "/get", method = RequestMethod.GET)
-    @ResponseBody
-    public String get() {
-        return "Controller";
+    @RequestMapping(method = RequestMethod.GET)
+    public String getIndex() {
+        return "index";
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String home() {
-        return "index";
+    @RequestMapping(path = "/home", method = RequestMethod.GET)
+    public String getHome() {
+        return "views/home";
+    }
+
+    @RequestMapping(path = "/crud", method = RequestMethod.GET)
+    public String getCrud() {
+        return "views/crud";
+    }
+
+    @RequestMapping(path = "/login", method = RequestMethod.GET)
+    public String getLogin() {
+        return "views/login";
     }
 
 }

@@ -39,7 +39,7 @@
             <version>${spring.version}</version>
         </dependency>
 
-        <!-- Spring Web MVC -->
+        <!-- Thymeleaf -->
         <dependency>
             <groupId>org.thymeleaf</groupId>
             <artifactId>thymeleaf-spring4</artifactId>
